@@ -1,0 +1,32 @@
+.header {
+    padding: 50px 0 0 0;
+
+    .container {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .header__nav {
+        display: flex;
+        align-items: center;
+        column-gap: 40px;
+        margin: 0 22% 0 20px;
+
+        li a {
+            font-size: 1rem;
+            font-weight: 500;
+            line-height: 160%;
+            color: var(--gray-text);
+        }
+
+        & li:first-child a {
+            color: var(--black-text);
+            font-weight: 800;
+        }
+    }
+
+    .header__button {
+        font-weight: 800;
+    }
+}

@@ -1,0 +1,35 @@
+.introduction {
+    margin: 200px 0 0 0;
+    
+    .container {
+        padding: 0 92px 0 10px;
+        border-radius: 50px;
+        background: rgba(240, 99, 184, 0.15);
+
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+}
+
+.introduction__text {
+    h2 {
+        color: var(--black-text);
+        font-size: 2.5rem;
+        font-weight: 700;
+        line-height: 130%;
+
+        margin: 0 0 40px 0;
+    }
+
+    p {
+        color: var(--gray-text);
+        font-size: 1.125rem;
+        font-weight: 500;
+        line-height: 160%;
+    }
+
+    h2, p {
+        max-width: 474px;
+    }
+}

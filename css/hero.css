@@ -1,0 +1,43 @@
+.hero {
+    .container {
+        position: relative;
+
+        .hero__background-img {
+            position: absolute;
+            bottom: -100px;
+            right: -130px;
+            z-index: -3;
+        }
+    }
+}
+
+.hero__text {
+    margin: 145px 0 0 0;
+
+    h1 {
+        color: var(--black-text);
+        font-size: 5rem;
+        font-weight: 700;
+        line-height: 110%;
+
+        max-width: 650px;
+    }
+
+    p {
+        color: var(--gray-text);
+        font-size: 1.125rem;
+        font-weight: 500;
+        line-height: 160%;
+
+        max-width: 390px;
+        margin: 50px 0;
+    }
+}
+
+.hero__button {
+    background-color: #9C69E2;
+
+    span {
+        font-weight: 800;
+    }
+}
