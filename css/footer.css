@@ -36,6 +36,10 @@
         span {
             font-weight: 900;
         }
+
+        &:hover {
+            background-color: var(--pink-hover);
+        }
     }
 
     .free__request {

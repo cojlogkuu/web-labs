@@ -40,4 +40,8 @@
     span {
         font-weight: 800;
     }
+
+    &:hover {
+        background-color: var(--purpule-hover);
+    }
 }

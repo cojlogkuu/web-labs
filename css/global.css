@@ -2,7 +2,10 @@
     --gray-text: #4B5D68;
     --black-text: #212353;
     --purpule: #9C69E2;
+    --purpule-hover: #804dc8;
     --pink: #F063B8;
+    --pink-hover: #d2469a;
+    --white-hover: #f4f3f3;
 }
 
 html {
@@ -36,6 +39,7 @@ h1, h2, h3, h4 {
     border-radius: 50px;
     background: #FFF;
     box-shadow: 0px 5px 5px 0px rgba(75, 93, 104, 0.10);
+    transition: all 0.5s ease;
 
     span {
         color: var(--black-text);
@@ -53,9 +57,22 @@ h1, h2, h3, h4 {
         background: url(../img/icons/arrow.svg) no-repeat center;
         background-size: contain;
         top: 50%;
-        transform: translateY(-50%);
         right: 25px;
+        transform: translateY(-50%);
+        transform-origin: 60% center;
+        transition: all 0.5s ease;
     }
+
+    &:hover {
+        background-color: var(--white-hover);
+        box-shadow: 0px 5px 5px 0px rgba(75, 93, 104, 0.2);
+
+        &::after {
+            transform: translateY(-50%) scaleX(1.6);
+        } 
+    }
+
+
 }
 
 .learn-more {
@@ -66,11 +83,16 @@ h1, h2, h3, h4 {
     width: 170px;
     height: 60px;
     border-radius: 50px;
+    transition: all 0.5s ease;
 
     span {
         color: #FFF;
         text-align: center;
         font-size: 1.125rem;
         line-height: 160%;
+    }
+
+    &:hover {
+        transform: scale(1.05);
     }
 }
