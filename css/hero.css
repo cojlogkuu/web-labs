@@ -35,7 +35,7 @@
 }
 
 .hero__button {
-    background-color: #9C69E2;
+    background-color: var(--purpule);
 
     span {
         font-weight: 800;

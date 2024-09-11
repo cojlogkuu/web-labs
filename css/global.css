@@ -1,6 +1,8 @@
 :root {
     --gray-text: #4B5D68;
     --black-text: #212353;
+    --purpule: #9C69E2;
+    --pink: #F063B8;
 }
 
 html {
@@ -8,13 +10,13 @@ html {
 }
 
 body {
-    font-family: "Prompt", sans-serif;
-    /* background: linear-gradient(180deg, #F6FAFD 0%, #FFF 19.4%); */
+    font-family: 'Avenir', sans-serif;
+    background: linear-gradient(180deg, #F6FAFD 0%, #FFF 19.4%);
     overflow-x: hidden;
 }
 
 h1, h2, h3, h4 {
-    font-family: "Inter", sans-serif;
+    font-family: 'Helvetica', sans-serif;
 }
 
 .container {
@@ -24,6 +26,10 @@ h1, h2, h3, h4 {
 }
 
 .request {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
     position: relative;
     width: 210px;
     height: 60px;
@@ -53,6 +59,10 @@ h1, h2, h3, h4 {
 }
 
 .learn-more {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
     width: 170px;
     height: 60px;
     border-radius: 50px;

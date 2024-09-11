@@ -9,6 +9,11 @@
     align-items: center;
     justify-content: space-between;
 
+    .free__buttons {
+        display: flex;
+        column-gap: 30px;
+    }
+
     h3 {
         color: var(--black-text);
         font-size: 2.5rem;
@@ -26,7 +31,7 @@
     }
 
     .free__learn-more {
-        background-color: #F063B8;
+        background-color: var(--pink);
 
         span {
             font-weight: 900;
@@ -35,7 +40,6 @@
 
     .free__request {
         font-weight: 900;
-        margin: 0 0 0 30px;
     }
 }
 

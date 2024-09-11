@@ -34,6 +34,14 @@
 
 .card {
     position: relative;
+    width: 540px;
+    height: 360px;
+
+    img {
+        height: 100%;
+        width: 100%;
+        object-fit: contain;
+    }
 
     .card__content {
         max-width: 225px;
