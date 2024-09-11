@@ -21,15 +21,30 @@
   <header class="header">
     <div class="container">
       <img class="header__logo" src="./img/icons/logo.svg" alt="">
-      <nav class="header__nav">
+      <nav class="header__nav descktop">
         <li><a href="">About</a></li>
         <li><a href="">Help</a></li>
         <li><a href="">Features</a></li>
         <li><a href="">Signup</a></li>
       </nav>
-      <a href="" class="header__button request">
+      <a href="" class="header__button descktop request">
         <span>Request Demo</span>
       </a>
+      <div class="header__burger">
+        <span></span>
+      </div>
+
+      <div class="header__toogled-menu">
+        <nav class="header__nav">
+          <li><a href="">About</a></li>
+          <li><a href="">Help</a></li>
+          <li><a href="">Features</a></li>
+          <li><a href="">Signup</a></li>
+        </nav>
+        <a href="" class="header__button request">
+          <span>Request Demo</span>
+        </a>
+      </div>
     </div>
   </header>
   <section class="hero">
@@ -140,6 +155,17 @@
       </div>
     </div>
   </footer>
+
+  <script>
+    burger = document.querySelector('.header__burger');
+    menu = document.querySelector('.header__toogled-menu');
+
+    burger.addEventListener('click', () => {
+      burger.classList.toggle('active');
+      menu.classList.toggle('active');
+      document.body.classList.toggle('lock');
+    });
+  </script>
 </body>
 
 </html>

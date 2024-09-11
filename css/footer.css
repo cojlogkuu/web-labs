@@ -2,6 +2,12 @@
     border-top: 2px solid rgb(156, 105, 226, 0.2);
     padding: 100px 0 50px 0;
     margin: 133px 0 0 0;
+
+    @media (max-width: 750px) {
+        padding: 50px 0 10px 0;
+
+        margin: 100px 0 0 0;
+    }
 }
 
 .footer__free {
@@ -9,9 +15,17 @@
     align-items: center;
     justify-content: space-between;
 
+    @media (max-width: 750px) {
+        flex-direction: column;
+    }
+
     .free__buttons {
         display: flex;
         column-gap: 30px;
+
+        @media (max-width: 430px) {
+            width: 100%;
+        }
     }
 
     h3 {
@@ -19,6 +33,10 @@
         font-size: 2.5rem;
         font-weight: 700;
         line-height: 130%;
+
+        @media (max-width: 750px) {
+            text-align: center;
+        }
     }
 
     p {
@@ -28,6 +46,11 @@
         line-height: 160%;
 
         margin: 20px 0 0 0;
+
+        @media (max-width: 750px) {
+            margin: 20px 0;
+            text-align: center;
+        }
     }
 
     .free__learn-more {
@@ -40,10 +63,18 @@
         &:hover {
             background-color: var(--pink-hover);
         }
+
+        @media (max-width: 430px) {
+            width: 41%;
+        }
     }
 
     .free__request {
         font-weight: 900;
+
+        @media (max-width: 430px) {
+            width: 51%;
+        }
     }
 }
 

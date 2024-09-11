@@ -21,6 +21,10 @@
         line-height: 160%;
 
         margin: 50px 0 100px 0;
+
+        @media (max-width: 1000px) {
+            margin: 30px 0 60px 0;
+        }
     }
 }
 
@@ -30,12 +34,21 @@
     justify-content: space-between;
     align-items:flex-start;
     row-gap: 50px;
+
+    @media (max-width: 1120px) {
+        justify-content: center;
+    }
 }
 
 .card {
     position: relative;
     width: 540px;
     height: 360px;
+
+    @media (max-width: 580px) {
+        width: 95%;
+        height: auto;
+    }
 
     img {
         height: 100%;
@@ -57,11 +70,19 @@
         top: 0;
         left: 50%;
 
+        @media (max-width: 580px) {
+            padding: 20px 10px 20px 0;
+        }
+
         h4 {
             color: var(--black-text);
             font-size: 1.5rem;
             font-weight: 400;
             line-height: 130%;
+
+            @media (max-width: 580px) {
+                font-size: 4vw;
+            }
         }
 
         p {
@@ -70,7 +91,12 @@
             font-weight: 400;
             line-height: 160%;
 
-            margin: 20px 0 20px 0;
+            margin: 20px 0;
+
+            @media (max-width: 580px) {
+                font-size: 3vw;
+                margin: 10px 0;
+            }
         }
 
         .card__button {
@@ -78,19 +104,28 @@
             position: relative;
             padding: 0 40px 0 0;
 
+            @media (max-width: 580px) {
+                padding: 0 20% 0 0;
+            }
+
             span {
                 color: var(--black-text);
                 font-size: 1rem;
                 font-weight: 800;
                 line-height: 160%;
                 letter-spacing: 0.08px;
+
+                @media (max-width: 580px) {
+                    font-size: 3.5vw;
+                }
             }
 
             &::after {
                 content: '';
                 position: absolute;
+                aspect-ratio: 20 / 14;
                 width: 20px;
-                height: 14px;
+                height: auto;
                 background: url(../img/icons/arrow.svg) no-repeat center;
                 background-size: contain;
                 top: 50%;
