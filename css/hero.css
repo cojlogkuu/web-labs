@@ -9,6 +9,10 @@
         }
 
         .hero__background-img {
+            background: url(../img/image1.png) no-repeat center;
+            background-size: contain;
+            width: 885px;
+            height: 468px;
             position: absolute;
             bottom: -100px;
             right: -130px;
@@ -28,6 +32,10 @@
         display: flex;
         flex-direction: column;
         align-items: center;
+    }
+
+    @media (max-width: 800px) {
+        margin: 100px 0 0 0;
     }
 
     h1 {

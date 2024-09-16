@@ -36,6 +36,10 @@
                 transition: all 0.4s ease;
             }
 
+            &:hover{
+                color: #23292c;
+            }
+
             &:hover::after {
                 transform: scale(1);
             }
@@ -47,6 +51,10 @@
 
             &::after {
                 background-color: var(--black-text);
+            }
+
+            &:hover{
+                color: #010101;
             }
         }
     }

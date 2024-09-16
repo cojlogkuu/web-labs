@@ -91,4 +91,15 @@
         line-height: 180%;
         letter-spacing: 0.12px;
     }
+
+    .copyrights__logo {
+        margin-left: 1055px;
+        position: fixed;
+        bottom: 50px;
+
+        @media (max-width: 1175px) {
+            margin-left: 0;
+            right: 20px;
+        }
+    }
 }
