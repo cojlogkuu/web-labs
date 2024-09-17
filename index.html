@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lab3</title>
+    
+  <!-- My styles -->
+  <link rel="stylesheet" href="./css/styles.css">
+
+  <!-- UUID -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/uuid/8.2.0/uuid.min.js"></script>
+</head>
+
+<body>
+    <div class="panel">
+        <div class="container">
+            <div class="panel__adding">
+                <form>
+                    <label for="name">Write pets name</label>
+                    <input id="name_input" type="text" name="name" placeholder="Enter pets name">
+                    <label for="description">Write pets description</label>
+                    <input id="description_input" type="text" name="description" placeholder="Enter pets description">
+                    <label for="type">Select pets type</label>
+                    <select id="type_select" name="type">
+                      <option value="monkey">Monkey</option>
+                      <option value="dog">Dog</option>
+                      <option value="pig">Pig</option>
+                      <option value="owl">Owl</option>
+                    </select>
+                    <label for="price">Set price</label>
+                    <input type="number" id="price_input" name="price" placeholder="Enter price">
+                    <button id="submit_button" type="submit">Submit</button>
+                </form>
+            </div>
+            <div class="panel__sorting">
+                <label for="text_find">Write name of pet to find</label>
+                <input id="text_find" type="text" name="text_find">
+                <label for="type_find">Select pets type to find</label>
+                <select id="type_find" name="type_find">
+                  <option value="monkey">Monkey</option>
+                  <option value="dog">Dog</option>
+                  <option value="pig">Pig</option>
+                  <option value="owl">Owl</option>
+                </select>
+                <button id="find_button">Find</button>
+                <button id="cancel_button">Cancel</button>
+            </div>
+        </div>
+    </div>
+    <div class="items-list">
+        <div class="container">
+            <ul id="items-container">
+            </ul>
+        </div>
+    </div>
+
+    <script type="module" src="./js/main.js"></script>
+</body>
+
+</html>
