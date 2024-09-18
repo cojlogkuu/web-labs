@@ -14,7 +14,7 @@
         justify-content: space-between;
 
         @media (max-width: 1050px) {
-            padding: 0 5% 0 10px;
+            padding: 15px 5% 15px 10px;
         }
 
         @media (max-width: 700px) {
@@ -45,35 +45,25 @@
     /* margin: 0 0 0 30px; */
     h2 {
         color: var(--black-text);
-        font-size: 2.5rem;
+        /* font-size: 2.5rem; */
+        font-size: clamp(2.1875rem, 2.0625rem + 0.625vw, 2.5rem);
         font-weight: 700;
         line-height: 130%;
 
         margin: 0 0 40px 0;
 
-        @media (max-width: 1050px) {
-            font-size: 3.8vw;
-        }
-
         @media (max-width: 700px) {
-            font-size: 1.625rem;
+            /* font-size: 1.625rem; */
             text-align: center;
         }
     }
 
     p {
         color: var(--gray-text);
-        font-size: 1.125rem;
+        /* font-size: 1.125rem; */
+        font-size: clamp(1rem, 0.95rem + 0.25vw, 1.125rem);
         font-weight: 500;
         line-height: 160%;
-
-        @media (max-width: 1050px) {
-            font-size: 1.5vw;
-        }
-
-        @media (max-width: 700px) {
-            font-size: 0.75rem;
-        }
     }
 
     h2, p {

@@ -40,7 +40,8 @@
 
     h1 {
         color: var(--black-text);
-        font-size: 5rem;
+        /* font-size: 5rem; */
+        font-size: clamp(2.5rem, 1.5rem + 5vw, 5rem);
         font-weight: 700;
         line-height: 110%;
 
@@ -49,19 +50,12 @@
         @media (max-width: 1050px) {
             text-align: center;
         }
-
-        @media (max-width: 750px) {
-            font-size: 3.2rem;
-        }
-
-        @media (max-width: 420px) {
-            font-size: 2.5rem;
-        }
     }
 
     p {
         color: var(--gray-text);
-        font-size: 1.125rem;
+        /* font-size: 1.125rem; */
+        font-size: clamp(1rem, 0.95rem + 0.25vw, 1.125rem);
         font-weight: 500;
         line-height: 160%;
 
@@ -69,13 +63,7 @@
         margin: 50px 0;
 
         @media (max-width: 750px) {
-            font-size: 1rem;
             margin: 35px 0;
-        }
-
-        @media (max-width: 420px) {
-            font-size: 0.8rem;
-            text-align: center;
         }
     }
 }
