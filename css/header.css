@@ -75,7 +75,7 @@
 
         span {
             display: block;
-            height: 2px;
+            height: 2.5px;
             width: 100%;
             background-color: black;
             position: relative;
@@ -98,7 +98,7 @@
         }
 
         &::after {
-            bottom: 1px;
+            bottom: 1.5px;
         }
 
         &::before {
