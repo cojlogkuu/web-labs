@@ -1,3 +1,5 @@
+import { addItem } from "./main.js";
+
 const nameInput = document.getElementById('name_input');
 const descInput = document.getElementById('description_input');
 const typeSelect = document.getElementById('type_select');
@@ -18,28 +20,6 @@ export const itemTemplate = ({ id, name, desc, type, price}, img) => `
                     <button class="item__delete">Delete</button>
                 </li>
 `
-
-export function addItem({ id, name, desc, type, price}) {
-    let img = '';
-    if (type === 'monkey') img = './img/monkey.jpg';
-    if (type === 'dog') img = './img/dog.jpg';
-    if (type === 'pig') img = './img/pig.png';
-    if (type === 'owl') img = './img/owl.jpg';
-
-    itemsContainer.insertAdjacentHTML(
-        "afterbegin",
-        itemTemplate({ id, name, desc, type, price }, img)
-    );
-
-    const deleteButton = document.querySelector('.item__delete');
-    deleteButton.addEventListener('click', (event) => {
-        deleteId = event.target.closest('li').id;
-        console.log(deleteId);
-        petItems = petItems.filter(item => item.id !== deleteId);
-
-        filterPets();
-    });
-}
 
 export function getPetsValues () {
     const id = uuid.v1();
