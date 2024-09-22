@@ -22,8 +22,9 @@
                 width: 100%;
             }
 
-            .text {
+            .item__text {
                 padding: 7px;
+
                 .text__info {
                     display: flex;
                     justify-content: space-between;
@@ -43,6 +44,11 @@
                         }
                     }
                 }
+            }
+
+            .item__delete {
+                background-color: red;
+                margin:  0 0 7px 7px;
             }
         }
     }

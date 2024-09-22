@@ -1,4 +1,4 @@
-import { getPetsValues, clearInputs, addItem, renderAllItems } from "./dom_utils.js";
+import { getPetsValues, clearInputs, renderAllItems, addItem } from "./dom_utils.js";
 
 const submitButton = document.getElementById('submit_button');
 const findButton = document.getElementById('find_button');
@@ -51,7 +51,7 @@ countButton.addEventListener('click', () => {
     let totalPrice = 0;
     filtredPets.forEach(pet => totalPrice += +pet.price);
     alert(`Total price of pets is ${totalPrice}$`);
-})
+});
 
 
 

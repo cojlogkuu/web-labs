@@ -36,17 +36,6 @@
         }
     }
 
-    button {
-        font-size: 1.25rem;
-        font-weight: 500;
-        padding: 5px;
-        border: 1px solid rgb(54, 54, 230);
-        border-radius: 8px;
-        background-color: rgb(33, 82, 188);
-        color: #fff;
-        width: 50%;
-    }
-
     #cancel_button {
         background-color: red;
     }

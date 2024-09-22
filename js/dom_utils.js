@@ -4,10 +4,10 @@ const typeSelect = document.getElementById('type_select');
 const priceInput = document.getElementById('price_input');
 const itemsContainer = document.getElementById('items-container');
 
-const itemTemplate = ({ id, name, desc, type, price}, img) => `
+export const itemTemplate = ({ id, name, desc, type, price}, img) => `
                 <li id=${id}>
                     <img src=${img} alt="">
-                    <div class="text">
+                    <div class="item__text">
                         <div class="text__info">
                             <span class="name">${name}</span>
                             <span class="price">${price}$</span>
@@ -15,6 +15,7 @@ const itemTemplate = ({ id, name, desc, type, price}, img) => `
                         </div>
                         <p>${desc}</p>
                     </div>
+                    <button class="item__delete">Delete</button>
                 </li>
 `
 
@@ -29,6 +30,15 @@ export function addItem({ id, name, desc, type, price}) {
         "afterbegin",
         itemTemplate({ id, name, desc, type, price }, img)
     );
+
+    const deleteButton = document.querySelector('.item__delete');
+    deleteButton.addEventListener('click', (event) => {
+        deleteId = event.target.closest('li').id;
+        console.log(deleteId);
+        petItems = petItems.filter(item => item.id !== deleteId);
+
+        filterPets();
+    });
 }
 
 export function getPetsValues () {
