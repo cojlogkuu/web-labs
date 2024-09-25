@@ -1,4 +1,4 @@
-import { getPetsValues, clearInputs, renderAllItems, addItem, filterPets, clearFindInputs, countPrice } from "./dom_utils.js";
+import { getStoneValues, clearInputs, renderAllItems, addItem, filterStones, clearFindInputs, countPrice } from "./dom_utils.js";
 
 const submitButton = document.getElementById('submit_button');
 const findButton = document.getElementById('find_button');
@@ -8,34 +8,34 @@ const modalWindow = document.getElementById('modal_window');
 const closeModalButton = modalWindow.querySelector('.modal__close');
 
 
-let petItems = [];
+let stoneItems = [];
 
 submitButton.addEventListener('click', (event) => {
     event.preventDefault()
 
-    const newPet = getPetsValues();
-    if (!newPet) return;
+    const newStone = getStoneValues();
+    if (!newStone) return;
 
-    petItems.push(newPet);
-    addItem(newPet);
+    stoneItems.push(newStone);
+    addItem(newStone);
     clearInputs();
 });
 
 findButton.addEventListener('click', () => {
-    const filtredItems = filterPets(petItems);
+    const filtredItems = filterStones(stoneItems);
     renderAllItems(filtredItems);
 });
 
 cancelButton.addEventListener('click', () => {
     clearFindInputs();
-    renderAllItems(petItems);
+    renderAllItems(stoneItems);
 });
 
 countButton.addEventListener('click', countPrice);
 
 export function deleteItem (idToDelete) {
-    petItems = petItems.filter(item => item.id !== idToDelete);
-    return petItems;
+    stoneItems = stoneItems.filter(item => item.id !== idToDelete);
+    return stoneItems;
 };
 
 closeModalButton.addEventListener('click', () => modalWindow.classList.remove('show'));

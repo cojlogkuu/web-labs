@@ -12,11 +12,17 @@ export function checkName (name) {
             }
 };
 
-export function checkDescription (desc) {
-    if (desc.length < 5)
+export function checkCarat (carat) {
+    carat = +carat;
+    if (carat <=0)
         return {
-            title: 'Wrong description',
-            text: 'Description cant be less then 5 symbols',
+            title: 'Wrong carat',
+            text: 'Carat cant be 0 and below',
+            }
+    if (carat > 5000)
+        return {
+            title: 'Wrong carat',
+            text: 'Stone cannot have that many carats',
             }
 };
 
@@ -26,10 +32,5 @@ export function checkPrice (price) {
         return {
             title: 'Wrong price',
             text: 'Price cant be 0 and below',
-            }
-    if (price > 1000000)
-        return {
-            title: 'Wrong price',
-            text: 'Animal cannot be worth that much',
             }
 };
