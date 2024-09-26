@@ -1,4 +1,4 @@
-import { deleteItem } from "./main.js";
+import { deleteItem, getItemsList } from "./main.js";
 import { checkName, checkPrice } from "./utils.js";
 
 const nameInput = document.getElementById('name_input');
@@ -36,6 +36,15 @@ export function showModalWindow ( {title, text} ) {
 };
 
 export function getStoneValues () {
+    // const list = getItemsList();
+    // console.log(list);
+    // let id;
+    // if (list.length === 0) {        
+    //     id = 0;
+    // } else {
+    //     id = list[list.length - 1].id + 1;
+    // }
+
     const id = uuid.v1();
 
     let alertMessage;
@@ -94,7 +103,7 @@ export function filterStones (stoneArray) {
     };
 
     filtredStones = filtredStones.filter(stone => 
-        stone.name.search(textFindInput.value) !== -1);
+        stone.name.search(textFindInput.value.trim().toLowerCase()) !== -1);
 
     if (selectedSort === 'descending') {
         filtredStones.sort((a,b) => +a.carat - +b.carat);

@@ -40,3 +40,7 @@ export function deleteItem (idToDelete) {
 
 closeModalButton.addEventListener('click', () => modalWindow.classList.remove('show'));
 
+export function getItemsList () {
+    return stoneItems
+}
+
