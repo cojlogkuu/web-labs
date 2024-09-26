@@ -9,6 +9,8 @@ const itemsContainer = document.getElementById('items-container');
 const textFindInput = document.getElementById('text_find');
 const typeSelectFind = document.getElementById('type_find');
 const modalWindow = document.getElementById('modal_window');
+const radiosSort = document.getElementsByName('carat_sorting');
+
 
 const itemTemplate = ({ id, name, carat, type, price}, img) => `
                 <li id=${id}>
@@ -66,6 +68,7 @@ export function clearInputs () {
 export function clearFindInputs () {
     textFindInput.value = '';
     typeSelectFind.value = 'all';
+    document.getElementById('not_sort').checked = true;
 }
 
 export function renderAllItems (items) {
@@ -74,6 +77,14 @@ export function renderAllItems (items) {
 };
 
 export function filterStones (stoneArray) {
+    let selectedSort;
+    for (const radio of radiosSort) {
+        if (radio.checked) {
+            selectedSort = radio.value;
+            break;
+        }
+    }
+
     let filtredStones;
 
     if (typeSelectFind.value !== 'all') {
@@ -84,6 +95,13 @@ export function filterStones (stoneArray) {
 
     filtredStones = filtredStones.filter(stone => 
         stone.name.search(textFindInput.value) !== -1);
+
+    if (selectedSort === 'descending') {
+        filtredStones.sort((a,b) => +a.carat - +b.carat);
+    } 
+    if (selectedSort === 'ascending') {
+        filtredStones.sort((a,b) => +b.carat - +a.carat);
+    }
     
     return filtredStones;
 }
