@@ -1,7 +1,10 @@
 from flask import Flask, request
 from flask_restful import Resource, Api, reqparse
+from flask_cors import CORS
+
 
 app = Flask(__name__)
+CORS(app)
 api = Api(app)
 
 current_id = 0
@@ -21,14 +24,12 @@ class Stones(Resource):
         type_query = request.args.get('type', 'all')
         sort_order = request.args.get('sort', 'not_sort')
 
-        # Фільтрація за типом
         filtred_stones = [
             {**stone, 'id': stone_id} for stone_id, stone in items.items()
             if (type_query == 'all' or stone['type'] == type_query) and
                (name_query in stone['name'].lower())
         ]
 
-        # Сортування
         if sort_order == 'ascending':
             filtred_stones.sort(key=lambda x: x['carats'])
         elif sort_order == 'descending':

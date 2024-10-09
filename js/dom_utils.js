@@ -1,5 +1,5 @@
-import { deleteItem, getItemsList } from "./main.js";
-import { checkName, checkPrice } from "./utils.js";
+import {deleteStone} from "./main.js";
+import {checkName, checkPrice, checkCarat} from "./utils.js";
 
 const nameInput = document.getElementById('name_input');
 const caratInput = document.getElementById('carat_input');
@@ -12,7 +12,7 @@ const modalWindow = document.getElementById('modal_window');
 const radiosSort = document.getElementsByName('carat_sorting');
 
 
-const itemTemplate = ({ id, name, carat, type, price}, img) => `
+const itemTemplate = ({id, name, carats, type, price}, img) => `
                 <li id=${id}>
                     <img src=${img} alt="">
                     <div class="item__text">
@@ -21,13 +21,14 @@ const itemTemplate = ({ id, name, carat, type, price}, img) => `
                             <span class="price">${price}$</span>
                             <span class="type">${type}</span>
                         </div>
-                        <p>Stone has <span>${carat}</span> carats</p>
+                        <p>Stone has <span>${carats}</span> carats</p>
                     </div>
                     <button class="item__delete">Delete</button>
+                    <button class="item__update">Update</button>
                 </li>
 `
 
-export function showModalWindow ( {title, text} ) {
+export function showModalWindow({title, text}) {
     const h2 = modalWindow.querySelector('h2');
     const p = modalWindow.querySelector('p');
     h2.innerText = title;
@@ -35,17 +36,7 @@ export function showModalWindow ( {title, text} ) {
     modalWindow.classList.add('show');
 };
 
-export function getStoneValues () {
-    // const list = getItemsList();
-    // console.log(list);
-    // let id;
-    // if (list.length === 0) {        
-    //     id = 0;
-    // } else {
-    //     id = list[list.length - 1].id + 1;
-    // }
-
-    const id = uuid.v1();
+export function getStoneValues() {
 
     let alertMessage;
 
@@ -53,39 +44,29 @@ export function getStoneValues () {
     if (alertMessage) {
         showModalWindow(alertMessage);
         return
-    };
+    }
 
     alertMessage = checkPrice(priceInput.value);
     if (alertMessage) {
         showModalWindow(alertMessage);
         return
-    };
+    }
+
+    alertMessage = checkCarat(caratInput.value);
+    if (alertMessage) {
+        showModalWindow(alertMessage);
+        return
+    }
 
     return {
-        id: id,
         name: nameInput.value,
-        carat: caratInput.value,
+        carats: caratInput.value,
         type: typeSelect.value,
         price: priceInput.value,
     }
-};
-
-export function clearInputs () {
-    nameInput.value = caratInput.value = priceInput.value = '';
-};
-
-export function clearFindInputs () {
-    textFindInput.value = '';
-    typeSelectFind.value = 'all';
-    document.getElementById('not_sort').checked = true;
 }
 
-export function renderAllItems (items) {
-    itemsContainer.innerHTML = '';
-    for (const item of items) addItem(item);
-};
-
-export function filterStones (stoneArray) {
+export function getFindValues() {
     let selectedSort;
     for (const radio of radiosSort) {
         if (radio.checked) {
@@ -93,29 +74,30 @@ export function filterStones (stoneArray) {
             break;
         }
     }
-
-    let filtredStones;
-
-    if (typeSelectFind.value !== 'all') {
-        filtredStones = stoneArray.filter(stone => stone.type === typeSelectFind.value)
-    } else {
-        filtredStones = stoneArray;
-    };
-
-    filtredStones = filtredStones.filter(stone => 
-        stone.name.search(textFindInput.value.trim().toLowerCase()) !== -1);
-
-    if (selectedSort === 'descending') {
-        filtredStones.sort((a,b) => +a.carat - +b.carat);
-    } 
-    if (selectedSort === 'ascending') {
-        filtredStones.sort((a,b) => +b.carat - +a.carat);
+    return {
+        name: textFindInput.value.trim(),
+        type: typeSelectFind.value,
+        sort: selectedSort,
     }
-    
-    return filtredStones;
 }
 
-export function addItem({ id, name, carat, type, price}) {
+
+export function clearInputs() {
+    nameInput.value = caratInput.value = priceInput.value = '';
+};
+
+export function clearFindInputs() {
+    textFindInput.value = '';
+    typeSelectFind.value = 'all';
+    document.getElementById('not_sort').checked = true;
+}
+
+export function renderAllItems(items) {
+    itemsContainer.innerHTML = '';
+    for (const item of items) addItem(item);
+}
+
+export function addItem({id, name, carats, type, price}) {
     let img = '';
     if (type === 'diamond') img = './img/diamond.jpg';
     if (type === 'sapphire') img = './img/sapphire.jpg';
@@ -124,24 +106,23 @@ export function addItem({ id, name, carat, type, price}) {
 
     itemsContainer.insertAdjacentHTML(
         "afterbegin",
-        itemTemplate({ id, name, carat, type, price }, img)
+        itemTemplate({id, name, carats, type, price}, img)
     );
 
     const deleteButton = itemsContainer.querySelector(`li[id="${id}"] .item__delete`);
 
-    deleteButton.addEventListener('click', () => {
-        const items = deleteItem(id);
-        renderAllItems(filterStones(items));
+    deleteButton.addEventListener('click', async () => {
+        await deleteStone(id);
     });
-};
+}
 
-export function countPrice () {
+export function countPrice() {
     const items = itemsContainer.querySelectorAll('li .price');
     let price = 0;
     items.forEach(item => price += +item.innerText.slice(0, -1));
 
-    showModalWindow( {
+    showModalWindow({
         title: 'Total price',
         text: `Total price of all stones is ${price}$.`
-    } );
+    });
 };

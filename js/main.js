@@ -1,4 +1,5 @@
-import { getStoneValues, clearInputs, renderAllItems, addItem, filterStones, clearFindInputs, countPrice } from "./dom_utils.js";
+import {getStoneValues, renderAllItems, clearInputs, getFindValues, clearFindInputs, countPrice} from "./dom_utils.js";
+import {getItems, addNewItem, deleteItem} from "./api.js";
 
 const submitButton = document.getElementById('submit_button');
 const findButton = document.getElementById('find_button');
@@ -8,39 +9,48 @@ const modalWindow = document.getElementById('modal_window');
 const closeModalButton = modalWindow.querySelector('.modal__close');
 
 
-let stoneItems = [];
-
-submitButton.addEventListener('click', (event) => {
-    event.preventDefault()
+submitButton.addEventListener('click', async (event) => {
+    event.preventDefault();
 
     const newStone = getStoneValues();
-    if (!newStone) return;
-
-    stoneItems.push(newStone);
-    addItem(newStone);
     clearInputs();
+    if (!newStone) return;
+    await addNewItem(newStone);
+
+    const items = await getItems();
+    renderAllItems(items);
 });
 
-findButton.addEventListener('click', () => {
-    const filtredItems = filterStones(stoneItems);
-    renderAllItems(filtredItems);
+findButton.addEventListener('click', async () => {
+    const findValues = getFindValues();
+    const items = await getItems(findValues.name, findValues.type, findValues.sort);
+    renderAllItems(items);
 });
 
-cancelButton.addEventListener('click', () => {
+cancelButton.addEventListener('click', async () => {
     clearFindInputs();
-    renderAllItems(stoneItems);
+    const items = await getItems();
+    renderAllItems(items);
 });
 
 countButton.addEventListener('click', countPrice);
 
-export function deleteItem (idToDelete) {
-    stoneItems = stoneItems.filter(item => item.id !== idToDelete);
-    return stoneItems;
-};
+export async function deleteStone(idToDelete) {
+    await deleteItem(idToDelete);
 
-closeModalButton.addEventListener('click', () => modalWindow.classList.remove('show'));
-
-export function getItemsList () {
-    return stoneItems
+    const findValues = getFindValues();
+    const items = await getItems(findValues.name, findValues.type, findValues.sort);
+    renderAllItems(items);
 }
+
+//
+closeModalButton.addEventListener('click', () => modalWindow.classList.remove('show'));
+//
+// export function getItemsList () {
+//     return stoneItems
+// }
+
+getItems().then(items => renderAllItems(items));
+
+
 
