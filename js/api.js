@@ -4,7 +4,6 @@ export async function addNewItem(data) {
     try {
         const response = await fetch(base_url, {
             method: 'POST',
-            mode: 'cors',
             headers: {
                 'Content-Type': 'application/json'
             },
@@ -53,5 +52,26 @@ export async function deleteItem(idToDelete) {
         }
     } catch (error) {
         console.error(`Error while deleting item: ${idToDelete}`);
+    }
+}
+
+export async function updateItem(idToUpdate, data) {
+    try {
+        const response = await fetch(base_url + `/${idToUpdate}`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data),
+        });
+
+        if (response.ok) {
+            console.log('Item was successfully updated');
+        } else {
+            const errorMessage = await response.json();
+            throw new Error(`Status code - ${response.status}\nError message - ${JSON.stringify(errorMessage)}`);
+        }
+    } catch (error) {
+        console.error(`Error while updating item - ${idToUpdate}`);
     }
 }

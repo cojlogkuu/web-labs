@@ -1,4 +1,4 @@
-import {deleteStone} from "./main.js";
+import {deleteStone, updateStone} from "./main.js";
 import {checkName, checkPrice, checkCarat} from "./utils.js";
 
 const nameInput = document.getElementById('name_input');
@@ -81,6 +81,50 @@ export function getFindValues() {
     }
 }
 
+export function getUpdateValues() {
+    let alertMessage;
+    let name, carats, price;
+    name = carats = price = null;
+
+    if (nameInput.value.trim() !== ''){
+        alertMessage = checkName(nameInput.value.trim());
+        if (alertMessage) {
+            showModalWindow(alertMessage);
+            return
+        } else {
+            name = nameInput.value.trim();
+        }
+    }
+
+    if (caratInput.value.length > 0) {
+        alertMessage = checkCarat(caratInput.value);
+        if (alertMessage) {
+            showModalWindow(alertMessage);
+            return
+        } else {
+            carats = caratInput.value;
+        }
+    }
+
+    if (priceInput.value.length > 0) {
+        alertMessage = checkPrice(priceInput.value);
+        if (alertMessage) {
+            showModalWindow(alertMessage);
+            return
+        } else {
+            price = priceInput.value;
+        }
+    }
+
+    return {
+        name: name,
+        carats: carats,
+        type: typeSelect.value,
+        price: price,
+    }
+}
+
+
 
 export function clearInputs() {
     nameInput.value = caratInput.value = priceInput.value = '';
@@ -114,6 +158,12 @@ export function addItem({id, name, carats, type, price}) {
     deleteButton.addEventListener('click', async () => {
         await deleteStone(id);
     });
+
+    const updateButton = itemsContainer.querySelector(`li[id="${id}"] .item__update`);
+
+    updateButton.addEventListener('click', async () => {
+        await updateStone(id);
+    })
 }
 
 export function countPrice() {
@@ -125,4 +175,4 @@ export function countPrice() {
         title: 'Total price',
         text: `Total price of all stones is ${price}$.`
     });
-};
+}

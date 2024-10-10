@@ -1,5 +1,13 @@
-import {getStoneValues, renderAllItems, clearInputs, getFindValues, clearFindInputs, countPrice} from "./dom_utils.js";
-import {getItems, addNewItem, deleteItem} from "./api.js";
+import {
+    getStoneValues,
+    renderAllItems,
+    clearInputs,
+    getFindValues,
+    clearFindInputs,
+    countPrice,
+    getUpdateValues
+} from "./dom_utils.js";
+import {getItems, addNewItem, deleteItem, updateItem} from "./api.js";
 
 const submitButton = document.getElementById('submit_button');
 const findButton = document.getElementById('find_button');
@@ -17,7 +25,8 @@ submitButton.addEventListener('click', async (event) => {
     if (!newStone) return;
     await addNewItem(newStone);
 
-    const items = await getItems();
+    const findValues = getFindValues();
+    const items = await getItems(findValues.name, findValues.type, findValues.sort);
     renderAllItems(items);
 });
 
@@ -43,12 +52,19 @@ export async function deleteStone(idToDelete) {
     renderAllItems(items);
 }
 
-//
+export async function updateStone(idToUpdate) {
+    const updateValues = getUpdateValues();
+    if (!updateValues) return;
+    clearInputs();
+
+    await updateItem(idToUpdate, updateValues);
+
+    const findValues = getFindValues();
+    const items = await getItems(findValues.name, findValues.type, findValues.sort);
+    renderAllItems(items);
+}
+
 closeModalButton.addEventListener('click', () => modalWindow.classList.remove('show'));
-//
-// export function getItemsList () {
-//     return stoneItems
-// }
 
 getItems().then(items => renderAllItems(items));
 
