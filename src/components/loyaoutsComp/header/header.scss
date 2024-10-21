@@ -1,0 +1,25 @@
+header {
+	.container {
+
+	}
+
+	.logo {
+
+	}
+
+	.nav {
+
+		.link {
+			&.active {
+				color: red;
+			}
+		}
+	}
+
+	.icons {
+		img {
+			height: 48px;
+			width: 48px;
+		}
+	}
+}
