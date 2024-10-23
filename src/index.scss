@@ -14,12 +14,22 @@ ul li{list-style: none;}
 img{vertical-align: top;}
 h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight: inherit;}
 
+:root {
+  --black: #000;
+  --black-hover: rgba(76, 76, 76, 0.78);
+  --gold: #fd9607;
+  --gray: #5B5B5B;
+  --gray-text: #6A6A6A;
+}
+
+
 html {
   font-size: 16px;
 }
 
 body {
   font-family: "Questrial", sans-serif;
+  background-color: #F8F3E9;
 }
 
 h1, h2, h3, h4, h5, h6{
@@ -27,7 +37,7 @@ h1, h2, h3, h4, h5, h6{
 }
 
 .container {
-  max-width: 1200px;
+  max-width: 1300px;
   padding: 0 15px;
   margin: 0 auto;
 }

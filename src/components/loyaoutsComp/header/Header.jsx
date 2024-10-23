@@ -1,6 +1,8 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {NavLink} from "react-router-dom";
 import './header.scss';
+import Search from '../../../assets/icons/search.svg';
+import Basket from '../../../assets/icons/basket.svg';
 
 const Header = () => {
 	return (
@@ -21,8 +23,8 @@ const Header = () => {
 						<a href="#" className="link">Contact</a>
 					</nav>
 					<div className="icons">
-						<img src="../../../assets/imgs/search-normal.png" alt="not visable"/>
-						<img src="../../../assets/icons/basket.svg" alt="not visable"/>
+						<img src={Search} alt="not visable"/>
+						<img src={Basket} alt="not visable"/>
 					</div>
 				</div>
 			</header>
