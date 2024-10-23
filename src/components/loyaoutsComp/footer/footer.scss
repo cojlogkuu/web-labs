@@ -1,0 +1,25 @@
+.footer {
+	margin-top: 100px;
+	background-color: var(--gray);
+	padding: 22px 0;
+
+	.container {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+
+		span {
+			color: #E3E3E3;
+			font-size: 1rem;
+			font-style: normal;
+			font-weight: 500;
+			line-height: 200%;
+		}
+
+		nav {
+			display: flex;
+			align-items: center;
+			column-gap: 20px;
+		}
+	}
+}
