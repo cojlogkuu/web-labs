@@ -1,0 +1,12 @@
+.nameFind {
+	padding: 7px;
+	background-color: rgb(0, 0, 0, 0);
+	color: var(--white);
+	border-radius: 5px;
+	border: 1px solid var(--white);
+	font-size: 1rem;
+
+	&::placeholder {
+		color: lightgray;
+	}
+}

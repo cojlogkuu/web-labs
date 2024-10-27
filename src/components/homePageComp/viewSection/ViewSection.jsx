@@ -1,7 +1,7 @@
 import React from 'react';
 import './viewSection.scss';
 import Card from '../viewCard/ViewCard';
-import ViewMore from "../../generalComp/viewMore/ViewMore";
+import ViewMore from "../viewMore/ViewMore";
 import diamondImg from '../../../assets/imgs/diamond-removebg-preview.png';
 import emeraldImg from '../../../assets/imgs/emerald-removebg-preview.png';
 import rubyImg from '../../../assets/imgs/ruby-removebg-preview.png';

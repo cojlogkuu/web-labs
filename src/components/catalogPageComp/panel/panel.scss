@@ -1,0 +1,26 @@
+.panel {
+	margin-top: 70px;
+	background-color: var(--gray);
+	padding: 30px 0 30px 0;
+
+	.container {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+
+		.filters {
+			display: flex;
+			column-gap: 10px;
+			align-items: center;
+		}
+
+		.create {
+			color: var(--gold);
+			border-color: var(--gold);
+
+			&:hover {
+				background-color: rgba(225, 157, 10, 0.67);
+			}
+		}
+	}
+}

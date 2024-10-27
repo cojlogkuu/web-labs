@@ -3,7 +3,7 @@ import './viewCard.scss';
 
 const ViewCard = ({name, children, img, price}) => {
 	return (
-			<div className="card">
+			<div className="viewCard">
 				<div className="img">
 					<img src={img} />
 				</div>
