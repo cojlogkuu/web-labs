@@ -11,6 +11,7 @@
 
   <!-- UUID -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/uuid/8.2.0/uuid.min.js"></script>
+
 </head>
 
 <body>
@@ -18,16 +19,16 @@
         <div class="container">
             <div class="panel__adding">
                 <form>
-                    <label for="name">Write pets name</label>
-                    <input id="name_input" type="text" name="name" placeholder="Enter pets name">
-                    <label for="description">Write pets description</label>
-                    <input id="description_input" type="text" name="description" placeholder="Enter pets description">
-                    <label for="type">Select pets type</label>
+                    <label for="name">Write stone name</label>
+                    <input id="name_input" type="text" name="name" placeholder="Enter stone name">
+                    <label for="carat">Set carats of stone</label>
+                    <input type="number" id="carat_input" name="carat" placeholder="Enter carat">
+                    <label for="type">Select stone type</label>
                     <select id="type_select" name="type">
-                      <option value="monkey">Monkey</option>
-                      <option value="dog">Dog</option>
-                      <option value="pig">Pig</option>
-                      <option value="owl">Owl</option>
+                      <option value="diamond">Diamond</option>
+                      <option value="sapphire">Sapphire</option>
+                      <option value="emerald">Emerald</option>
+                      <option value="ruby">Ruby</option>
                     </select>
                     <label for="price">Set price</label>
                     <input type="number" id="price_input" name="price" placeholder="Enter price">
@@ -35,16 +36,31 @@
                 </form>
             </div>
             <div class="panel__sorting">
-                <label for="text_find">Write name of pet to find</label>
+                <label for="text_find">Write name of stone to find</label>
                 <input id="text_find" type="text" name="text_find">
-                <label for="type_find">Select pets type to find</label>
+                <label for="type_find">Select stone type to find</label>
                 <select id="type_find" name="type_find">
                   <option value="all">All</option>  
-                  <option value="monkey">Monkey</option>
-                  <option value="dog">Dog</option>
-                  <option value="pig">Pig</option>
-                  <option value="owl">Owl</option>
+                  <option value="diamond">Diamond</option>
+                  <option value="sapphire">Sapphire</option>
+                  <option value="emerald">Emerald</option>
+                  <option value="ruby">Ruby</option>
                 </select>
+                <div class="radio_find">
+                    <h3>Sort stones by carats</h3>
+                    <div class="radio-container">
+                        <input type="radio" id="not_sort" name="carat_sorting" value="not_sort">
+                        <label for="not_sort">None</label>
+                    </div>
+                    <div class="radio-container">
+                        <input type="radio" id="ascending" name="carat_sorting" value="ascending">
+                        <label for="ascending">ascending</label>
+                    </div>
+                    <div class="radio-container">
+                        <input type="radio" id="descending" name="carat_sorting" value="descending">
+                        <label for="descending">descending</label>
+                    </div>
+                </div>
                 <button id="find_button">Find</button>
                 <button id="cancel_button">Cancel</button>
                 <button id="count_button">Count total price</button>
@@ -54,7 +70,15 @@
     <div class="items-list">
         <div class="container">
             <ul id="items-container">
+
             </ul>
+        </div>
+    </div>
+    <div id="modal_window" class="modal-window">
+        <div class="modal__container">
+            <h2>Lorem ipsum dolor sit amet.</h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Temporibus nam magni alias et? Praesentium iste omnis earum nisi ipsum voluptatum?</p>
+            <button class="modal__close"></button>
         </div>
     </div>
 

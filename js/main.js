@@ -1,57 +1,46 @@
-import { getPetsValues, clearInputs, addItem, renderAllItems } from "./dom_utils.js";
+import { getStoneValues, clearInputs, renderAllItems, addItem, filterStones, clearFindInputs, countPrice } from "./dom_utils.js";
 
 const submitButton = document.getElementById('submit_button');
 const findButton = document.getElementById('find_button');
-const textFindInput = document.getElementById('text_find');
-const typeSelectFind = document.getElementById('type_find');
 const cancelButton = document.getElementById('cancel_button');
 const countButton = document.getElementById('count_button');
+const modalWindow = document.getElementById('modal_window');
+const closeModalButton = modalWindow.querySelector('.modal__close');
 
-let petItems = [];
+
+let stoneItems = [];
 
 submitButton.addEventListener('click', (event) => {
     event.preventDefault()
 
-    const newPet = getPetsValues();
+    const newStone = getStoneValues();
+    if (!newStone) return;
 
-    petItems.push(newPet);
-    addItem(newPet);
+    stoneItems.push(newStone);
+    addItem(newStone);
     clearInputs();
 });
 
-let filtredPets = [];
-
-function filterPets () {
-    if (typeSelectFind.value !== 'all') {
-        filtredPets = petItems.filter(pet => pet.type === typeSelectFind.value)
-    } else {
-        filtredPets = petItems;
-    };
-
-
-    filtredPets = filtredPets.filter(pet => 
-        pet.name.search(textFindInput.value) !== -1);
-
-    renderAllItems(filtredPets);
-}
-
 findButton.addEventListener('click', () => {
-    filterPets();
+    const filtredItems = filterStones(stoneItems);
+    renderAllItems(filtredItems);
 });
 
 cancelButton.addEventListener('click', () => {
-    textFindInput.value = '';
-    typeSelectFind.value = 'all';
-    filtredPets = [];
-    renderAllItems(petItems);
+    clearFindInputs();
+    renderAllItems(stoneItems);
 });
 
-countButton.addEventListener('click', () => {
-    filterPets();
-    let totalPrice = 0;
-    filtredPets.forEach(pet => totalPrice += +pet.price);
-    alert(`Total price of pets is ${totalPrice}$`);
-})
+countButton.addEventListener('click', countPrice);
 
+export function deleteItem (idToDelete) {
+    stoneItems = stoneItems.filter(item => item.id !== idToDelete);
+    return stoneItems;
+};
 
+closeModalButton.addEventListener('click', () => modalWindow.classList.remove('show'));
+
+export function getItemsList () {
+    return stoneItems
+}
 
