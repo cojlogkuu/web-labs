@@ -3,6 +3,8 @@ import {createBrowserRouter, Link, RouterProvider} from "react-router-dom";
 import Layout from "./components/pages/Layout";
 import HomePage from "./components/pages/HomePage";
 import CatalogPage from "./components/pages/CatalogPage";
+import ItemPage from "./components/pages/ItemPage";
+import StonesProvider from "./components/context/StonesContext";
 
 const router = createBrowserRouter([
   {
@@ -18,6 +20,10 @@ const router = createBrowserRouter([
         element: <CatalogPage />,
       },
       {
+        path: 'catalog/:id',
+        element: <ItemPage />
+      },
+      {
         path: '*',
         element: <h1>Page not found</h1>,
       }
@@ -27,7 +33,9 @@ const router = createBrowserRouter([
 
 function App() {
   return (
-      <RouterProvider router={router} />
+      <StonesProvider>
+        <RouterProvider router={router} />
+      </StonesProvider>
   );
 }
 

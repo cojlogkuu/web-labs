@@ -1,11 +1,12 @@
 import React from 'react';
 import './exploreButton.scss';
+import {NavLink} from "react-router-dom";
 
 const ExploreButton = ({additionalClass}) => {
 	return (
-			<button className={`explore ${additionalClass}`}>
-				<span>Explore</span>
-			</button>
+			<NavLink to='catalog' className={`explore ${additionalClass}`}>
+				Explore
+			</NavLink>
 	);
 };
 

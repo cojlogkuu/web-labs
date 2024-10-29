@@ -1,8 +1,9 @@
 import React from 'react';
 import './card.scss';
 import Button from "../panel/button/Button";
+import {Link} from "react-router-dom";
 
-const Card = ({name, img, carats, price, description}) => {
+const Card = ({name, img, carats, price, description, id}) => {
 	return (
 			<div className="card">
 				<div className="img">
@@ -17,6 +18,7 @@ const Card = ({name, img, carats, price, description}) => {
 				<div className="buttonsContainer">
 					<Button additionalClass="update">Update</Button>
 					<Button additionalClass="delete">Delete</Button>
+					<Link to={`/catalog/${id}`}>View More</Link>
 				</div>
 			</div>
 	);

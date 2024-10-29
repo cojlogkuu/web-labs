@@ -1,7 +1,7 @@
 import React from 'react';
 import './viewCard.scss';
 
-const ViewCard = ({name, children, img, price}) => {
+const ViewCard = ({name, children, img, carats}) => {
 	return (
 			<div className="viewCard">
 				<div className="img">
@@ -9,7 +9,7 @@ const ViewCard = ({name, children, img, price}) => {
 				</div>
 				<div className="title">
 					<h2>{name}</h2>
-					<span>{price}$</span>
+					<span>{carats} carats</span>
 				</div>
 				<p>{children}</p>
 			</div>
