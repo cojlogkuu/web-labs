@@ -54,20 +54,14 @@
 		font-style: normal;
 		font-weight: 600;
 		line-height: normal;
+		text-align: center;
 	}
 
-	.buttonsContainer {
-		display: flex;
-		column-gap: 20px;
-
-		.update {
-			border-color: var(--black);
-			color: var(--black);
-		}
-
-		.delete {
-			color: rgba(71, 70, 70, 0.85);
-			border-color: rgba(71, 70, 70, 0.85);
-		}
+	.viewMore {
+		width: 80%;
+		align-self: center;
+		height: 20px;
+		text-align: center;
+		border-radius: 19px;
 	}
 }

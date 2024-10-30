@@ -10,7 +10,7 @@ const CatalogPage = () => {
 	const [filteredStones, setFilteredStones] = useState(stones)
 
 	return (
-			<main>
+			<main className="catalogPage">
 				<Panel
 						stones={stones}
 						setFilteredStones={setFilteredStones}

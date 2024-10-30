@@ -4,7 +4,7 @@ import ViewSection from "../homePageComp/viewSection/ViewSection";
 
 const HomePage = () => {
 	return (
-			<main>
+			<main className="HomePage">
 				<HeroSection />
 				<ViewSection />
 			</main>

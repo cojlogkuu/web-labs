@@ -105,11 +105,10 @@ const Panel = ({setFilteredStones, stones}) => {
 							value={nameFilter}
 							onChange={(e) => setNameFilter(e.target.value)}
 						>Type name to find</NameFind>
-						<Button
-							onClick={handleClear}
-						>Clear</Button>
 					</div>
-					<Button additionalClass="create">Create</Button>
+					<Button
+							onClick={handleClear}
+					>Clear</Button>
 				</div>
 			</div>
 	);
