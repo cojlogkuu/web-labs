@@ -1,6 +1,6 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {useParams} from "react-router-dom";
-import {useStones} from "../context/StonesContext";
+import {getStoneById} from "../../assets/api/api";
 import {images} from "../../assets/data/imgTypes";
 import Button from "../catalogPageComp/panel/button/Button";
 import NavButton from "../catalogPageComp/panel/navButton/NavButton";
@@ -8,8 +8,12 @@ import './itemPage.scss';
 
 const ItemPage = () => {
 	const {id} = useParams();
-	const {stones} = useStones()
-	const stone = stones.find(stone => +stone.id === +id);
+	const [stone, setStone] = useState({});
+
+	useEffect(() => {
+		getStoneById(id).then((stone) => setStone(stone));
+	}, [])
+
 	return (
 		<main className="itemPage">
 			<div className="container">

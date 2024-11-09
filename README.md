@@ -1,10 +1,8 @@
 ## Лабораторні роботи з дисципліни "Вебтехнології та вебдизайн"
 
 ### Виконав: Бабірад Роман Володимирович (ІР-21)
-### Лабораторна робота №8 (Варіант 2)
+### Лабораторна робота №9 (Варіант 2)
 
-#### React.js: Item page
+#### React.js: Connecting to REST API
 
-Description: Continue work on your React App by adding a page for  your
-Item (see the link to wireframe of Item page above). Also, now, you have to
-make all your previous pages (Home & Catalog) more interactive.
+Description: Finally! Now, you are about to put a final touches on all pages you created - implement interaction with your REST API server.

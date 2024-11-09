@@ -1,13 +1,18 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import './viewSection.scss';
 import Card from '../viewCard/ViewCard';
 import ViewMore from "../viewMore/ViewMore";
 import {images} from "../../../assets/data/imgTypes";
-import {useStones} from "../../context/StonesContext";
+import {getStones} from "../../../assets/api/api";
 
 const ViewSection = () => {
-	const {stones} = useStones()
+	const [stones, setStones] = React.useState([]);
 	const [itemsCounter, setItemsCounter] = React.useState(3);
+
+	useEffect(() => {
+		getStones({}).then((stones) => {setStones(stones)});
+	}, []);
+
 	return (
 			<section className="view">
 				<div className="container">
