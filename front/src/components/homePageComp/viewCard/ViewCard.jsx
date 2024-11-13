@@ -9,7 +9,7 @@ const ViewCard = ({name, children, img, carats}) => {
 				</div>
 				<div className="title">
 					<h2>{name}</h2>
-					<span>{carats} carats</span>
+					<span>{+carats} carats</span>
 				</div>
 				<p>{children}</p>
 			</div>

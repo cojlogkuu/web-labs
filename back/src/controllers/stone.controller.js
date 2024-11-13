@@ -3,7 +3,6 @@ import Stone from "../models/stone.model.js";
 class StoneController {
 	static async getStones(req, res) {
 		const {caratsSort, priceSort, nameSort, typeFilter, nameFilter} = req.query;
-		console.log(nameSort, priceSort, caratsSort, typeFilter, nameFilter);
 			try {
 				let stones = await Stone.findAll()
 

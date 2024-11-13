@@ -1,8 +1,8 @@
 ## Лабораторні роботи з дисципліни "Вебтехнології та вебдизайн"
 
 ### Виконав: Бабірад Роман Володимирович (ІР-21)
-### Лабораторна робота №9 (Варіант 2)
+### Лабораторна робота №10 (Варіант 2)
 
-#### React.js: Connecting to REST API
+#### React.js: Redux: Cart page (shopping cart)
 
-Description: Finally! Now, you are about to put a final touches on all pages you created - implement interaction with your REST API server.
+Description: You are on your way to finishing this insane project... Create the first of three cart pages - Shopping cart page. Also, here you meet one of the most popular React library - Redux.

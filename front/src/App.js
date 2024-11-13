@@ -1,10 +1,12 @@
 import React from 'react';
-import {createBrowserRouter, Link, RouterProvider} from "react-router-dom";
+import {createBrowserRouter, RouterProvider} from "react-router-dom";
+import {Provider} from 'react-redux';
+import store from "./assets/store/store";
 import Layout from "./components/pages/Layout";
 import HomePage from "./components/pages/HomePage";
-import CatalogPage from "./components/pages/CatalogPage";
-import ItemPage from "./components/pages/ItemPage";
-import StonesProvider from "./components/context/StonesContext";
+import CatalogPage from "./components/pages/catalog/CatalogPage";
+import ItemPage from "./components/pages/item/ItemPage";
+import CartPage from "./components/pages/cart/CartPage";
 
 const router = createBrowserRouter([
   {
@@ -24,6 +26,10 @@ const router = createBrowserRouter([
         element: <ItemPage />
       },
       {
+        path: 'cart',
+        element: <CartPage />,
+      },
+      {
         path: '*',
         element: <h1>Page not found</h1>,
       }
@@ -33,9 +39,9 @@ const router = createBrowserRouter([
 
 function App() {
   return (
-      <StonesProvider>
+      <Provider store={store}>
         <RouterProvider router={router} />
-      </StonesProvider>
+      </Provider>
   );
 }
 

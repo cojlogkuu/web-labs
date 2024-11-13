@@ -1,6 +1,6 @@
 import React from 'react';
 import './card.scss';
-import NavButton from "../panel/navButton/NavButton";
+import NavButton from "../../generalComp/navButton/NavButton";
 
 const Card = ({name, img, carats, price, description, id}) => {
 	return (
@@ -10,10 +10,10 @@ const Card = ({name, img, carats, price, description, id}) => {
 				</div>
 				<div className="title">
 					<h3>{name}</h3>
-					<span>{carats} carats</span>
+					<span>{+carats} carats</span>
 				</div>
 				<p>{description}</p>
-				<h4>{price}$</h4>
+				<h4>{+price}$</h4>
 				<NavButton additionalClass="viewMore" to={`/catalog/${id}`}>View more</NavButton>
 			</div>
 	);

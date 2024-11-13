@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {NavLink} from "react-router-dom";
 import './header.scss';
 import Search from '../../../assets/icons/search.svg';
@@ -25,8 +25,12 @@ const Header = () => {
 						>
 							Catalog
 						</NavLink>
-						<a href="#" className="link">About</a>
-						<a href="#" className="link">Contact</a>
+						<NavLink
+							to='cart'
+							className={({isActive}) => isActive ? 'link active' : 'link'}
+						>
+							Cart
+						</NavLink>
 					</nav>
 					<div className="icons">
 						<img src={Search} alt="not visable"/>

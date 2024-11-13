@@ -1,7 +1,7 @@
 import React from 'react';
 import SelectSort from "./selectSort/SelectSort";
 import NameFind from "./nameFind/NameFind";
-import Button from "./button/Button";
+import Button from "../../generalComp/button/Button";
 import './panel.scss';
 
 const nameOptions = new Map([

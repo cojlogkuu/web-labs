@@ -1,6 +1,7 @@
 import express from "express";
 import cors from "cors";
 import stoneRout from "./src/routes/stone.rout.js";
+import cartRout from "./src/routes/cart.rout.js";
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -22,6 +23,7 @@ app.use((req, res, next) => {
 });
 
 app.use('/api/stones', stoneRout);
+app.use('/api/carts', cartRout);
 
 app.listen(PORT, () => {
 	console.log(`Server is running on http://localhost:${PORT}`);

@@ -1,10 +1,10 @@
 import React, {useCallback, useEffect, useState} from 'react';
 import './catalogPage.scss';
-import Panel from "../catalogPageComp/panel/Panel";
-import Card from "../catalogPageComp/card/Card";
-import Loader from "../generalComp/loader/Loader";
-import {getStones} from "../../assets/api/api";
-import {images} from "../../assets/data/imgTypes";
+import Panel from "../../catalogPageComp/panel/Panel";
+import Card from "../../catalogPageComp/card/Card";
+import Loader from "../../generalComp/loader/Loader";
+import {getStones} from "../../../assets/api/api";
+import {images} from "../../../assets/data/imgTypes";
 
 const CatalogPage = () => {
 	const [stones, setStones] = useState([])
@@ -29,7 +29,7 @@ const CatalogPage = () => {
 	}, [nameSort, caratsSort, priceSort, typeFilter, nameFilter])
 
 	useEffect(() => {
-		fetchStones()
+		fetchStones().then()
 	}, [fetchStones]);
 
 
