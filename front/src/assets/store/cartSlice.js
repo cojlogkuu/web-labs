@@ -1,13 +1,18 @@
 import {createSlice, createAsyncThunk} from '@reduxjs/toolkit';
-import {getCarts, updateCartCount} from "../api/api";
+import {getCarts, updateCartCount, deleteCart} from "../api/api";
 
 export const fetchCarts = createAsyncThunk('carts/fetchCarts', async () => {
 	return await getCarts();
 });
 
-export const updateCount = createAsyncThunk('carts/updateCount', async ({id, count}) => {
-	await updateCartCount(id, count);
-	return {id, count};
+export const updateCount = createAsyncThunk('carts/updateCount', async ({stone_id, count, processing}) => {
+	const {cart} = await updateCartCount({stone_id, count, processing});
+	return cart;
+});
+
+export const removeCart = createAsyncThunk('carts/deleteCart', async (id) => {
+	await deleteCart(id);
+	return id;
 });
 
 const initialCartState = {
@@ -34,13 +39,24 @@ const cartSlice = createSlice({
 					state.error = action.error.message;
 				})
 				.addCase(updateCount.fulfilled, (state, action) => {
-					const {id, count} = action.payload;
-					const cart = state.carts.find((cart) => cart.id === id);
-					if (cart) {cart.count = count}
+					const cart = action.payload;
+					const existingCart = state.carts.find((exCart)=> exCart.stone.id === cart.stone.id && exCart.processing === cart.processing);
+					if (existingCart) {
+						existingCart.count = cart.count;
+					} else {
+						state.carts.push(cart);
+					}
 				})
 				.addCase(updateCount.rejected, (state, action) => {
 					state.error = action.error.message
-				});
+				})
+				.addCase(removeCart.fulfilled, (state, action) => {
+					const id = action.payload;
+					state.carts = state.carts.filter(cart => cart.id !== id);
+				})
+				.addCase(removeCart.rejected, (state, action) => {
+					state.error = action.error.message
+				})
 	},
 });
 

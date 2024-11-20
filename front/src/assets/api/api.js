@@ -62,9 +62,24 @@ export async function getCarts() {
 	}
 }
 
-export async function updateCartCount(id, count) {
+export async function updateCartCount({stone_id, count, processing}) {
 	try {
-		await cartApi.put(`/${id}`, {count});
+		const response = await cartApi.post(`/`, {count, stone_id, processing});
+		return response.data
+	} catch (error) {
+		if (error.response) {
+			console.log(error.response.data);
+			console.log(error.response.status);
+			console.log(error.response.headers);
+		} else {
+			console.log(`Error: ${error.message}`);
+		}
+	}
+}
+
+export async function deleteCart(id) {
+	try {
+		await cartApi.delete(`/${id}`);
 	} catch (error) {
 		if (error.response) {
 			console.log(error.response.data);

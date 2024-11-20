@@ -6,7 +6,7 @@ class CartController {
 	static async getCarts (req, res) {
 		try {
 			const carts = await Cart.findAll({
-				attributes: ['id', 'count'], // Include both `id` and `count` fields from `Cart`
+				attributes: ['id', 'count', 'processing'],
 				where: {
 					count: {
 						[Sequelize.Op.gt]: 0, // Greater than 0
@@ -15,8 +15,8 @@ class CartController {
 				include: [
 					{
 						model: Stone,
-						as: 'stone', // Ensure this matches the association alias, if any
-						required: true, // Ensures only Cart items with an associated Stone are returned
+						as: 'stone',
+						required: true,
 					},
 				],
 			});
@@ -26,34 +26,83 @@ class CartController {
 		}
 	}
 
-	static async changeCount (req, res) {
-		const { count } = req.body;
-		const { id } = req.params;
-
-		// id = parseInt(id, 10);
-		//
-		// if (isNaN(id)) {
-		// 	return res.status(400).json({ message: 'Invalid id format' });
-		// }
-		//
-		// console.log(count, id, typeof count, typeof id);
-
+	static async deleteCart(req, res) {
+		const {id} = req.params;
 		try {
-			const [affectedRows] = await Cart.update(
-					{ count }, // Setting 'count' field to 'newCount' value
-					{ where: { id } } // Filtering by 'id' in params
-			);
-
-			if (affectedRows === 0) {
-				return res.status(404).json({ message: `Cart with id=${id} not found.` });
+			const deleted = Cart.destroy({where: {id: id}});
+			if (deleted) {
+				return res.status(204).json({message: `Cart with id=${id} was deleted successfully`});
 			}
-
-			return res.status(200).json({ message: `Cart with id=${id} was updated.` });
 		} catch (error) {
-			console.error('Error updating cart:', error);
-			return res.status(500).json({ message: 'An error occurred while updating the cart.' });
+			console.log(`Error deleting cart ${id} - ${error}`);
 		}
 	}
+
+	static async createOrUpdateCart(req, res) {
+		const { stone_id, count, processing } = req.body;
+
+		try {
+			const existingCart = await Cart.findOne({
+				where: {
+					stone_id,
+					processing,
+				},
+				include: [
+					{
+						model: Stone,
+						as: 'stone',
+					},
+				],
+			});
+
+			if (existingCart) {
+				existingCart.count = count;
+				await existingCart.save();
+
+				await existingCart.reload();
+
+				return res.status(200).json({
+					message: `Updated cart with stone_id=${stone_id} and processing='${processing}'.`,
+					cart: {
+						id: existingCart.id,
+						count: existingCart.count,
+						processing: existingCart.processing,
+						stone: existingCart.stone,
+					},
+				});
+			} else {
+				const newCart = await Cart.create({
+					stone_id,
+					count,
+					processing,
+				});
+
+				const cartWithStone = await Cart.findOne({
+					where: { id: newCart.id },
+					include: [
+						{
+							model: Stone,
+							as: 'stone',
+						},
+					],
+				});
+
+				return res.status(201).json({
+					message: "Created a new cart entry.",
+					cart: {
+						id: cartWithStone.id,
+						count: cartWithStone.count,
+						processing: cartWithStone.processing,
+						stone: cartWithStone.stone,
+					},
+				});
+			}
+		} catch (error) {
+			console.error("Error in createOrUpdateCart:", error);
+			return res.status(500).json({ message: "Internal server error." });
+		}
+	}
+
 }
 
 export default CartController;

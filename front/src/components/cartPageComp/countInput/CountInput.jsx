@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import './countInput.scss';
 
-const CountInput = ({startCount, updateCount}) => {
+const CountInput = ({startCount, updateCount, deleteCart}) => {
 	const [value, setValue] = useState(+startCount);
 	const [debounceTimer, setDebounceTimer] = useState(null);
 
@@ -9,13 +9,17 @@ const CountInput = ({startCount, updateCount}) => {
 		if (debounceTimer) clearTimeout(debounceTimer);
 
 		const timer = setTimeout(() => {
-			updateCount(value);
+			if (value === 0) {
+				deleteCart();
+			} else {
+				updateCount(value);
+			}
 		}, 1500);
 
 		setDebounceTimer(timer);
 
 		return () => clearTimeout(timer);
-	}, [value, updateCount]);
+	}, [value, updateCount, deleteCart]);
 
 	return (
 			<div className="countInput">

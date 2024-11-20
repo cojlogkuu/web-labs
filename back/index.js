@@ -15,7 +15,7 @@ app.use((req, res, next) => {
 
 	res.on('finish', () => {
 		const duration = Date.now() - start;
-		const logMessage = `${req.method} ${req.url} - Status: ${res.statusCode} - ${duration}ms`;
+		const logMessage = `${req.method} ${req.originalUrl} - Status: ${res.statusCode} - ${duration}ms`;
 
 		console.log(logMessage);
 	});

@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import './cartPage.scss';
 import CartItem from "../../cartPageComp/cartItem/CartItem";
 import {useDispatch, useSelector} from "react-redux";
-import {fetchCarts, updateCount} from "../../../assets/store/cartSlice";
+import {fetchCarts, updateCount, removeCart} from "../../../assets/store/cartSlice";
 import Loader from "../../generalComp/loader/Loader";
 import {images} from "../../../assets/data/imgTypes";
 import NavButton from "../../generalComp/navButton/NavButton";
@@ -37,8 +37,14 @@ const CartPage = () => {
 									key={cart.id}
 									price={cart.stone.price}
 									count={cart.count}
+									processing={cart.processing}
 									setTotalPrice={setTotalPrice}
-									updateCount={(newCount) => dispatch(updateCount({id: cart.id, count: newCount}))}
+									updateCount={(newCount) => dispatch(updateCount({
+										stone_id: cart.stone.id,
+										processing: cart.processing,
+										count: newCount,
+									}))}
+									deleteCart={() => dispatch(removeCart(cart.id))}
 								/>
 						))}
 					</div>
