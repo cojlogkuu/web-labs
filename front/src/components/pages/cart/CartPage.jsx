@@ -38,7 +38,6 @@ const CartPage = () => {
 									price={cart.stone.price}
 									count={cart.count}
 									processing={cart.processing}
-									setTotalPrice={setTotalPrice}
 									updateCount={(newCount) => dispatch(updateCount({
 										stone_id: cart.stone.id,
 										processing: cart.processing,
