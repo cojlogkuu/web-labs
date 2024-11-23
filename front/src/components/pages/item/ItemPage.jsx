@@ -8,6 +8,7 @@ import './itemPage.scss';
 import {useNavigate} from "react-router-dom";
 import {updateCount} from "../../../assets/store/cartSlice";
 import {useDispatch} from "react-redux";
+import {useSelector} from "react-redux";
 import SelectSort from "../../catalogPageComp/panel/selectSort/SelectSort";
 import IntInput from "../../generalComp/intInput/IntInput";
 
@@ -24,58 +25,60 @@ const ItemPage = () => {
 	const dispatch = useDispatch();
 	const [processingOption, setProcessingOption] = useState('faceting');
 	const [count, setCount] = useState(1);
+	const {carts} = useSelector((state) => state.cart);
 
 	useEffect(() => {
 		getStoneById(id).then((stone) => setStone(stone));
 	}, [id])
 
 	return (
-		<main className="itemPage">
-			<div className="container">
-				<div className="itemContainer">
-					<div className="img">
-						<img src={images[stone.type]} alt=""/>
+			<main className="itemPage">
+				<div className="container">
+					<div className="itemContainer">
+						<div className="img">
+							<img src={images[stone.type]} alt=""/>
+						</div>
+						<div className="text">
+							<span className="type">Type: {stone.type}</span>
+							<span className="carats">Carats: {+stone.carats}</span>
+							<h2 className="name">{stone.name}</h2>
+							<p className="description">{stone.description}</p>
+							<div className="form">
+								<SelectSort
+										value={processingOption}
+										onChange={(e) => setProcessingOption(e.target.value)}
+										labelText="Select processing"
+										sortName="processing"
+										options={processingOptions}
+								/>
+								<IntInput
+										value={count}
+										setValue={setCount}
+										min={1}
+										max={100}
+								/>
+							</div>
+						</div>
 					</div>
-					<div className="text">
-						<span className="type">Type: {stone.type}</span>
-						<span className="carats">Carats: {+stone.carats}</span>
-						<h2 className="name">{stone.name}</h2>
-						<p className="description">{stone.description}</p>
-						<div className="form">
-							<SelectSort
-									value={processingOption}
-									onChange={(e) => setProcessingOption(e.target.value)}
-									labelText="Select processing"
-									sortName="processing"
-									options={processingOptions}
-							/>
-							<IntInput
-								value={count}
-								setValue={setCount}
-								min={1}
-								max={100}
-							/>
+					<div className="itemFooter">
+						<span className="price">Price: {+stone.price}$</span>
+						<div className="buttons">
+							<Button
+									onClick={async () => {
+										const cart = carts.find(cart => cart.processing === processingOption && cart.stone.id === stone.id)
+										await dispatch(updateCount({
+											stone_id: stone.id,
+											count: count + (cart?.count ?? 0),
+											processing: processingOption,
+										}));
+										navigate("/cart");
+									}}
+									additionalClass="itemButton">Add to cart</Button>
+							<NavButton to="/catalog">Go back</NavButton>
 						</div>
 					</div>
 				</div>
-				<div className="itemFooter">
-					<span className="price">Price: {+stone.price}$</span>
-					<div className="buttons">
-						<Button
-								onClick={async () => {
-									await dispatch(updateCount({
-										stone_id: stone.id,
-										count,
-										processing: processingOption,
-									}));
-									navigate("/cart");
-								}}
-								additionalClass="itemButton">Add to cart</Button>
-						<NavButton to="/catalog">Go back</NavButton>
-					</div>
-				</div>
-			</div>
-		</main>
+			</main>
 	);
 };
 
